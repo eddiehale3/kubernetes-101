@@ -38,6 +38,17 @@ spec:
       containers:
       - name: demo-kubernetes-application
         image: demo-app:1
+        env:
+          - name: CONFIG_MAP_VAR
+            valueFrom:
+              configMapKeyRef:
+                name: demo-configmap
+                key: test_config
+          - name: SECRETS_VAR
+            valueFrom:
+              secretKeyRef:
+                name: demo-secret
+                key: test_secret
         resources:
           requests:
             memory: 64Mi
@@ -47,3 +58,20 @@ spec:
             cpu: 500m
         ports:
           - containerPort: 8080
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-configmap
+  namespace: demo-namespace
+data:
+  test_config: "hello there"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: demo-secret
+  namespace: demo-namespace
+type: Opaque
+data:
+  test_secret: Z2VuZXJhbCBrZW5vYmk=

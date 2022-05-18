@@ -1,6 +1,6 @@
 # Kubernetes Sample Application
 
-Basic Kubernetes application for learning purposes. It includes a basic express API served on port 8080, and configuration for Kubernetes Servcie, Deployment, and Namespace resources.
+Basic Kubernetes application for learning purposes. It includes a basic express API served on port 8080, and configuration for Kubernetes Servcie, Deployment, ConfigMap, Secret, and Namespace resources.
 
 The commands assume you will deploy locally to Docker Desktop or Minikube, or `kubectl`'s context is directed at a remote cluster.
 
@@ -21,9 +21,11 @@ If successful, the following should appear:
 namespace/demo-namespace created
 service/demo-service created
 deployment.apps/demo-deployment created
+configmap/demo-configmap created
+secret/demo-secret created
 ```
 
-Show all resources in your newly created namespace. An example output is provided.
+Show workload resources in your newly created namespace. An example output is provided.
 
 ```bash
 kubectl get all -n demo-namespace
@@ -46,6 +48,13 @@ NAME                                         DESIRED   CURRENT   READY   AGE
 replicaset.apps/demo-deployment-7946fc9958   3         3         3       107s
 ```
 
+Secrets and ConfigMap resources can be displayed with the following:
+
+```bash
+kubectl get secrets -n demo-namespace
+kubectl get cm -n demo-namespace
+```
+
 ## Test
 
 In the above deployment we created a Service with type NodePort. In order to verify our application is running, curl the node port specified in the service configuration. A "Hello World!" message should return.
@@ -66,4 +75,6 @@ Output:
 namespace "demo-namespace" deleted
 service "demo-service" deleted
 deployment.apps "demo-deployment" deleted
+configmap "demo-configmap" deleted
+secret "demo-secret" deleted
 ```
