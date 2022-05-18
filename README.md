@@ -29,34 +29,35 @@ configmap/demo-configmap created
 secret/demo-secret created
 ```
 
-Show workload resources in your newly created namespace. An example output is provided.
+Show all resources in your newly created namespace. An example output is provided.
 
 ```bash
-kubectl get all -n demo-namespace
+kubectl get all,secrets,cm -n demo-namespace
 ```
 
 Output:
 ```bash
 NAME                                   READY   STATUS    RESTARTS   AGE
-pod/demo-deployment-7946fc9958-4kf8x   1/1     Running   0          107s
-pod/demo-deployment-7946fc9958-kxs62   1/1     Running   0          107s
-pod/demo-deployment-7946fc9958-vjjs5   1/1     Running   0          107s
+pod/demo-deployment-5c54bffdb5-7l9xc   1/1     Running   0          3s
+pod/demo-deployment-5c54bffdb5-bqgch   1/1     Running   0          3s
+pod/demo-deployment-5c54bffdb5-fl6j5   1/1     Running   0          3s
 
-NAME                   TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
-service/demo-service   NodePort   10.103.211.219   <none>        80:30007/TCP   107s
+NAME                   TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/demo-service   NodePort   10.100.149.26   <none>        80:30007/TCP   3s
 
 NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/demo-deployment   3/3     3            3           107s
+deployment.apps/demo-deployment   3/3     3            3           3s
 
 NAME                                         DESIRED   CURRENT   READY   AGE
-replicaset.apps/demo-deployment-7946fc9958   3         3         3       107s
-```
+replicaset.apps/demo-deployment-5c54bffdb5   3         3         3       3s
 
-Secrets and ConfigMap resources can be displayed with the following:
+NAME                         TYPE                                  DATA   AGE
+secret/default-token-kr99x   kubernetes.io/service-account-token   3      3s
+secret/demo-secret           Opaque                                1      3s
 
-```bash
-kubectl get secrets -n demo-namespace
-kubectl get cm -n demo-namespace
+NAME                         DATA   AGE
+configmap/demo-configmap     1      3s
+configmap/kube-root-ca.crt   1      3s
 ```
 
 ## Test
