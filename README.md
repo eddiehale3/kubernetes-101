@@ -19,6 +19,7 @@ docker build -t demo-app:1 .
 ```bash
 kubectl apply -f k8s/deployment.yaml
 ```
+
 If successful, the following should appear:
 
 ```bash
