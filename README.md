@@ -4,6 +4,10 @@ Basic Kubernetes application for learning purposes. It includes a basic express 
 
 The commands assume you will deploy locally to Docker Desktop or Minikube, or `kubectl`'s context is directed at a remote cluster.
 
+## Architecture
+
+![](resources/Kubernetes-Deployment.png)
+
 ## Build and Deployment
 
 1. Build Docker image
